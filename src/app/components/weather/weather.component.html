@@ -1,0 +1,17 @@
+<!-- weather.component.html -->
+<div class="weather-container">
+  <div class="weather-input">
+
+    <input class="input" [(ngModel)]="city" placeholder="Enter city">
+    <button (click)="search()" class="button">Search</button>
+  </div>
+
+
+  <div *ngIf="weather" class="weather-details">
+    <h2>City Name: {{ weather.name }}</h2>
+    <p>Temperature: {{ weather.main.temp }}°K</p>
+    <p>Pressure: {{ weather.main.pressure }}</p>
+    <p>Humidity: {{ weather.main.humidity }}°K</p>
+    <p>Description: {{ weather.weather[0].description }}</p>
+  </div>
+</div>
