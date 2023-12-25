@@ -14,4 +14,8 @@ export class WeatherAPIService {
   getWeather(city: string) {
     return this.http.get(`${this.API_URL}&q=${city}`);
   }
+
+  getWeatherByCoordinates(lat: number, lon: number) {
+    return this.http.get(`${this.API_URL}&lat=${lat}&lon=${lon}`);
+  }
 }

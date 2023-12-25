@@ -5,6 +5,11 @@
     font-family: Arial, sans-serif;
 }
 /* weather.component.css */
+body {
+    background-image: url("./assets/images/day-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .weather-container {
     padding: 30px;
     text-align: center;
@@ -12,13 +17,10 @@
     height: 100vh;
 }
 .weather-input {
-    background-image: url("https://source.unsplash.com/1600x900/?weather");
+    // background-image: url("https://source.unsplash.com/1600x900/?weather");
     background-size: cover;
 }
 .weather-details {
-    border: 1px soild red;
-    border-radius: 20px;
-    background-color: black;
 }
 
 .input {
@@ -40,34 +42,30 @@
     background-color: #0056b3;
 }
 
-h2 {
-    color: #007bff;
-}
-
 p {
     margin: 5px 0;
 }
 
-p:nth-child(odd) {
-    color: #96d0e7;
-}
-
-p:nth-child(even) {
-    color: #90ee90;
-}
-
 /* app.component.css */
 nav {
-    background-color: #f8f9fa;
+    // background-color: #f8f9fa;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav a {
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    padding: 5px;
     margin-right: 15px;
     text-decoration: none;
     color: #007bff;
 }
 
 nav a:hover {
-    color: #0056b3;
+    color: #f8f9fa;
+    background-color: #007bff;
 }

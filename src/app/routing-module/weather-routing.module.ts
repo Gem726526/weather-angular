@@ -5,9 +5,18 @@ import { WeatherComponent } from '../components/weather/weather.component';
 import { WeatherForecastComponent } from '../components/weather-forecast/weather-forecast.component';
 
 const routes: Routes = [
-  { path: 'weather', component: WeatherComponent },
-  { path: 'weather-forecast', component: WeatherForecastComponent },
-  { path: '', redirectTo: '/weather', pathMatch: 'full' },
+  { path: 'weather', component: WeatherComponent, outlet: 'current-weather' },
+  {
+    path: 'weather-forecast',
+    component: WeatherForecastComponent,
+    outlet: 'weather-forecast',
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: WeatherComponent,
+    outlet: 'current-weather',
+  },
 ];
 
 @NgModule({

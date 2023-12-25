@@ -1,5 +1,5 @@
 <!-- app.component.html -->
 <nav>
-  <a routerLink="/current-weather">Current Weather</a>
-  <a routerLink="/weather-forecast">Weather Forecast</a>
+  <a [routerLink]="[{ outlets: { weatherOutlet: ['current-weather'] } }]">Current Weather</a>
+  <a [routerLink]="[{ outlets: { weatherOutlet: ['weather-forecast'] } }]">Weather Forecast</a>
 </nav>

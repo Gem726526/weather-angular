@@ -1,17 +1,26 @@
 <!-- weather.component.html -->
 <div class="weather-container">
   <div class="weather-input">
+    <!-- <form (ngSubmit)="search()" [formGroup]="loactionSearchForm"> -->
+    <form (ngSubmit)="search()" [formGroup]="loactionSearchForm">
 
-    <input class="input" [(ngModel)]="city" placeholder="Enter city">
-    <button (click)="search()" class="button">Search</button>
+      <input class="input" formControlName="city" placeholder="Enter city">
+      <button type="submit" class="button">Search</button>
+    </form>
   </div>
 
 
-  <div *ngIf="weather" class="weather-details">
+  <div *ngIf="weather; else errorContent" class="weather-details">
     <h2>City Name: {{ weather.name }}</h2>
     <p>Temperature: {{ weather.main.temp }}°K</p>
     <p>Pressure: {{ weather.main.pressure }}</p>
     <p>Humidity: {{ weather.main.humidity }}°K</p>
     <p>Description: {{ weather.weather[0].description }}</p>
   </div>
+
+  <ng-template #errorContent>
+    <p>{{ error }}</p>
+
+  </ng-template>
+
 </div>
