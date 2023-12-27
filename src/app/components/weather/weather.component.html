@@ -10,17 +10,24 @@
   </div>
 
 
-  <div *ngIf="weather; else errorContent" class="weather-details">
-    <h2>City Name: {{ weather.name }}</h2>
-    <p>Temperature: {{ weather.main.temp }}°K</p>
-    <p>Pressure: {{ weather.main.pressure }}</p>
-    <p>Humidity: {{ weather.main.humidity }}°K</p>
-    <p>Description: {{ weather.weather[0].description }}</p>
-  </div>
+  <ng-container *ngIf="!isLoading">
 
-  <ng-template #errorContent>
-    <p>{{ error }}</p>
+    <div *ngIf="weather; else errorContent" class="weather-details" [ngClass]="timeClass">
+      <h2>City Name: {{ weather.name }}</h2>
+      <h2>Country: {{ this.countryName }}</h2>
+      <h2>Local Time: {{ localTime | date:'medium' }}</h2>
+      <p>Sunrise Time: {{this.sunriseTime| date:'shortTime'}}</p>
+      <p>Sunset Time: {{this.sunsetTime | date:'shortTime'}}</p>
+      <p>Temperature: {{ weather.main.temp | KToC }} °C</p>
+      <p>Pressure: {{ weather.main.pressure }}</p>
+      <p>Humidity: {{ weather.main.humidity }}°K</p>
+      <p>Description: {{ weather.weather[0].description }}</p>
+    </div>
 
-  </ng-template>
+    <ng-template #errorContent>
+      <p>{{ error }}</p>
+
+    </ng-template>
+  </ng-container>
 
 </div>

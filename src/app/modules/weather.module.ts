@@ -10,12 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [WeatherComponent, WeatherForecastComponent],
-  imports: [
-    BrowserModule,
-    WeatherRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-  ],
+  imports: [BrowserModule, WeatherRoutingModule, SharedModule],
   providers: [WeatherAPIService],
   bootstrap: [],
 })
