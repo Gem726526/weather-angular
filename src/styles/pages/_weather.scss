@@ -1,0 +1,132 @@
+.weather {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 8rem;
+    gap: 2rem;
+    z-index: 1;
+    position: relative;
+    top: 0;
+    bottom: 0;
+
+    &__image-card {
+        width: 400px;
+        height: 100%;
+        border: 4px soild black;
+        background-image: url("../../assets/images/day-background.jpg");
+        border-radius: 1.25rem;
+        background-size: cover;
+    }
+    &__image {
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 1.25rem;
+        &.day {
+            background-image: url("../../assets/images/day-background.jpg");
+        }
+        &.dusk {
+            background-image: url("../../assets/images/1703647634187.jpeg");
+        }
+        &.dawn {
+            background-image: url("../../assets/images/1703647634217.jpeg");
+        }
+        &.night {
+            background-image: url("../../assets/images/night.jpeg");
+        }
+        &.normal {
+            background-image: url("../../assets/images/1703647634287.jpeg");
+        }
+    }
+
+    &__left {
+        position: relative;
+    }
+    &__left-top {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        top: 20px;
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+    &__clock {
+        color: white;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            left: -0.5rem;
+            background-color: white;
+            height: 100%;
+            width: 2px;
+        }
+    }
+
+    &__time {
+        font-size: 20px;
+    }
+    &__date {
+        font-size: 10px;
+    }
+    &__country {
+        font-size: 24px;
+        color: white;
+    }
+    &__form {
+        position: relative;
+        display: flex;
+        gap: 1rem;
+    }
+    &__input {
+        padding: 1rem 2rem 0.5rem;
+        background: none;
+        border-width: 0 0 2px 0;
+    }
+
+    &__icon {
+        position: absolute;
+        left: 0;
+        top: 1rem;
+    }
+
+    &__icon-img {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    &__button {
+        padding: 0.5rem;
+        background: none;
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        cursor: pointer;
+    }
+
+    &__right-top {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    &__content {
+        padding: 1rem 2rem;
+        display: grid;
+        place-items: center;
+    }
+
+    &__description {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__description-card {
+        display: flex;
+    }
+
+    &__large {
+        font-size: 2rem;
+        span {
+            font-size: 1rem;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+/* HTML: <div class="loader"></div> */
+.sunset {
+    width: 50px;
+    aspect-ratio: 1;
+    background: #ffd738;
+    border-radius: 50%;
+    display: grid;
+}
+.sunset::before,
+.sunset::after {
+    content: "";
+    grid-area: 1/1;
+    background: inherit;
+    clip-path: polygon(0 0, 50% 40%, 100% 0, 60% 50%, 100% 100%, 50% 60%, 0 100%, 40% 50%);
+    animation: l1 1s infinite alternate;
+    transform: rotate(var(--r, 0)) scale(1);
+}
+.sunset::after {
+    --r: 45deg;
+}
+@keyframes l1 {
+    100% {
+        transform: rotate(var(--r, 0)) scale(1.4);
+    }
+}

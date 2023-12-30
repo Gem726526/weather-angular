@@ -1,0 +1,22 @@
+.weather-navigator {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav a {
+    border: 1px solid #007bff;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    padding: 5px;
+    margin-right: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+nav a:hover {
+    color: #f8f9fa;
+    background-color: #007bff;
+}

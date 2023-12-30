@@ -1,0 +1,64 @@
+/* HTML: <div class="loader"></div> */
+.loader-cloud {
+    width: 108px;
+    height: 60px;
+    color: #269af2;
+    --c: radial-gradient(farthest-side, currentColor 96%, #0000);
+    background:
+        var(--c) 100% 100% /30% 60%,
+        var(--c) 70% 0 /50% 100%,
+        var(--c) 0 100% /36% 68%,
+        var(--c) 27% 18% /26% 40%,
+        linear-gradient(currentColor 0 0) bottom/67% 58%;
+    background-repeat: no-repeat;
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        opacity: 0.4;
+        animation: l7 1s infinite;
+    }
+}
+@keyframes l7 {
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader-sun {
+    width: 80px;
+    height: 40px;
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0 0 -100%;
+        background:
+            radial-gradient(farthest-side, #ffd738 80%, #0000) left 70% top 20%/15px 15px,
+            radial-gradient(farthest-side, #020308 92%, #0000) left 65% bottom 19%/12px 12px,
+            radial-gradient(farthest-side, #ecfefe 92%, #0000) left 70% bottom 20%/15px 15px,
+            linear-gradient(#9eddfe 50%, #020308 0);
+        background-repeat: no-repeat;
+        animation: l5 2s infinite;
+    }
+}
+@keyframes l5 {
+    0%,
+    20% {
+        transform: rotate(0);
+    }
+    40%,
+    60% {
+        transform: rotate(0.5turn);
+    }
+    80%,
+    100% {
+        transform: rotate(1turn);
+    }
+}

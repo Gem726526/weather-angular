@@ -1,33 +1,114 @@
 <!-- weather.component.html -->
-<div class="weather-container">
-  <div class="weather-input">
-    <!-- <form (ngSubmit)="search()" [formGroup]="loactionSearchForm"> -->
-    <form (ngSubmit)="search()" [formGroup]="loactionSearchForm">
 
-      <input class="input" formControlName="city" placeholder="Enter city">
-      <button type="submit" class="button">Search</button>
-    </form>
+
+<div class="weather-background-container">
+  <img src="../../../assets/images/background.jpeg" alt="" srcset="" class="weather-background-image">
+</div>
+
+<div class="weather" *ngIf="weather; else errorContent">
+
+  <div class="weather__left">
+    <ng-container *ngIf="!isLoading">
+      <div class="weather__image-card">
+        <div class="weather__image" [ngClass]="timeClass">
+        </div>
+      </div>
+
+      <div class="weather__left-top">
+        <div class="weather__clock">
+          <p class="weather__time"> {{ localTime | date:'shortTime' }}</p>
+          <p class="weather__date"> {{ localTime | date:'fullDate' }}</p>
+        </div>
+
+        <div class="weather__country">
+          {{ this.countryName }}
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isLoading">
+      <loader-day-night></loader-day-night>
+    </ng-container>
   </div>
 
+  <div class="weather__right">
+    <div class="weather__right-top">
+      <form (ngSubmit)="search()" [formGroup]="loactionSearchForm" class="weather__form">
+        <input class="weather__input" formControlName="city" placeholder="Enter city">
+        <span class="weather__icon search"> <img src="../../../assets/icons/search.svg"
+            class="weather__icon-img"></span>
+        <button type="submit" class="weather__button">Search</button>
+      </form>
 
-  <ng-container *ngIf="!isLoading">
-
-    <div *ngIf="weather; else errorContent" class="weather-details" [ngClass]="timeClass">
-      <h2>City Name: {{ weather.name }}</h2>
-      <h2>Country: {{ this.countryName }}</h2>
-      <h2>Local Time: {{ localTime | date:'medium' }}</h2>
-      <p>Sunrise Time: {{this.sunriseTime| date:'shortTime'}}</p>
-      <p>Sunset Time: {{this.sunsetTime | date:'shortTime'}}</p>
-      <p>Temperature: {{ weather.main.temp | KToC }} °C</p>
-      <p>Pressure: {{ weather.main.pressure }}</p>
-      <p>Humidity: {{ weather.main.humidity }}°K</p>
-      <p>Description: {{ weather.weather[0].description }}</p>
+      <div class="brand"></div>
     </div>
+    <ng-container *ngIf="!isLoading">
 
-    <ng-template #errorContent>
-      <p>{{ error }}</p>
+      <div class="weather__content">
+        <div class="weather__place">
+          <h2 class="weather__city"> {{ weather.name }}</h2>
+        </div>
 
-    </ng-template>
-  </ng-container>
+        <div class="weather__details">
 
+          <div class="description-card description-card--reverse description-card--no-shadow">
+            <div class="description-card__image description-card__image--bottom">
+              <img src="../../../assets/icons/temperature-heat-icon.svg" class="description-card__icon">
+            </div>
+            <p class="description-card__text--large description-card__text"> {{ weather.main.temp | KToC }} </p>
+          </div>
+
+          <div class="weather__description">
+
+            <div class="description-card">
+              <div class="description-card__image">
+                <img src="../../../assets/icons/wind-icon.svg" class="description-card__icon">
+              </div>
+              <p class=" description-card__text"> {{ weather.main.pressure }}</p>
+            </div>
+            <div class="description-card">
+              <div class="description-card__image">
+                <img src="../../../assets/icons/water-droplet-icon.svg" class="description-card__icon">
+              </div>
+              <p class="description-card__text"> {{ weather.main.humidity }}°K</p>
+            </div>
+
+            <div class="description-card">
+              <div class="description-card__image">
+                <img src="../../../assets/icons/cloud-fog-icon.svg" class="description-card__icon">
+              </div>
+              <p class="description-card__text--small  description-card__text">{{
+                weather.weather[0].description }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="weather_content-footer">
+        <div class="description-card description-card--large">
+          <div class="description-card__image">
+            <div class="sunrise"></div>
+          </div>
+          <p class="description-card__text--small  description-card__text">{{this.sunriseTime| date:'shortTime'}}</p>
+        </div>
+        <div class="description-card description-card--large">
+          <div class="description-card__image">
+            <div class="sunset"></div>
+          </div>
+          <p class="description-card__text--small  description-card__text">{{this.sunsetTime | date:'shortTime'}}</p>
+        </div>
+        <p class="weather__sunrise"> </p>
+        <p class="weather__sunset"> </p>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="isLoading">
+      <loader-cloud></loader-cloud>
+    </ng-container>
+  </div>
 </div>
+
+<ng-template #errorContent>
+  <p>{{ error }}</p>
+</ng-template>

@@ -8,8 +8,6 @@ import { finalize, forkJoin } from 'rxjs';
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css'],
-  encapsulation: ViewEncapsulation.None,
   providers: [DatePipe],
 })
 export class WeatherComponent implements OnInit {
@@ -55,7 +53,7 @@ export class WeatherComponent implements OnInit {
       return 'day';
     } else if (currentTime >= sunsetTime && currentTime < duskTime) {
       return 'dawn';
-    } else if (currentTime >= duskTime && currentTime < dawnTime) {
+    } else if (currentTime >= duskTime || currentTime < dawnTime) {
       return 'night';
     } else {
       return 'normal';
@@ -126,6 +124,12 @@ export class WeatherComponent implements OnInit {
             this.weather = weatherData;
             this.localTime = timeData.formatted;
             this.countryName = timeData.countryName;
+            this.showSunTime(
+              this.weather.sys.sunrise,
+              this.weather.sys.sunset,
+              this.weather.timeZone
+            );
+
             this.error = ''; // clear any previous error
           },
           error: (err) => {
@@ -133,8 +137,7 @@ export class WeatherComponent implements OnInit {
             console.error(err); // log the error to the console
           },
           complete: () => {
-            this.isLoading = true;
-
+            this.isLoading = false;
             console.log('Completed fetching weather data');
           },
         });
