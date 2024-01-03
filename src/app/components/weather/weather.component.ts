@@ -45,11 +45,14 @@ export class WeatherComponent implements OnInit {
     const sunsetTime = new Date(sunset);
     const currentTime = new Date(localTime);
     const dawnTime = new Date(sunriseTime.getTime() - 3 * 60 * 60 * 1000);
+    const mroningTime = new Date(sunriseTime.getTime() + 3 * 60 * 60 * 1000);
     const duskTime = new Date(sunsetTime.getTime() + 3 * 60 * 60 * 1000);
 
     if (currentTime >= dawnTime && currentTime < sunriseTime) {
       return 'dawn';
-    } else if (currentTime >= sunriseTime && currentTime < sunsetTime) {
+    } else if (currentTime >= sunriseTime && currentTime < mroningTime) {
+      return 'morning';
+    } else if (currentTime >= mroningTime && currentTime < sunsetTime) {
       return 'day';
     } else if (currentTime >= sunsetTime && currentTime < duskTime) {
       return 'dawn';

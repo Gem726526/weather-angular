@@ -5,14 +5,14 @@
     gap: 2rem;
     z-index: 1;
     position: relative;
-    top: 0;
-    bottom: 0;
+    height: 100vh;
+    overflow: hidden;
 
     &__image-card {
         width: 400px;
         height: 100%;
         border: 4px soild black;
-        background-image: url("../../assets/images/day-background.jpg");
+        background-image: url("../../assets/images/normal.jpeg");
         border-radius: 1.25rem;
         background-size: cover;
     }
@@ -23,24 +23,29 @@
         background-size: cover;
         border-radius: 1.25rem;
         &.day {
-            background-image: url("../../assets/images/day-background.jpg");
+            background-image: url("../../assets/images/day-small.jpeg");
         }
         &.dusk {
-            background-image: url("../../assets/images/1703647634187.jpeg");
+            background-image: url("../../assets/images/dusk.small.jpg");
         }
         &.dawn {
-            background-image: url("../../assets/images/1703647634217.jpeg");
+            background-image: url("../../assets/images/dawn-small.jpeg");
         }
         &.night {
-            background-image: url("../../assets/images/night.jpeg");
+            background-image: url("../../assets/images/night-small.jpeg");
         }
         &.normal {
-            background-image: url("../../assets/images/1703647634287.jpeg");
+            background-image: url("../../assets/images/normal.jpeg");
         }
     }
 
     &__left {
         position: relative;
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        min-width: 400px;
+        flex-basis: 400px;
     }
     &__left-top {
         position: absolute;
@@ -103,9 +108,22 @@
         cursor: pointer;
     }
 
+    &__right {
+        display: grid;
+        place-items: center;
+        box-shadow:
+            rgba(23, 107, 135, 0.25) 0px 14px 28px,
+            rgba(23, 107, 135, 0.22) 0px 10px 10px;
+        padding: 4rem 1rem;
+        border-radius: 1.25rem;
+        height: 100%;
+        min-width: 500px;
+        flex-basis: 500px;
+        background-color: rgba(180, 212, 255, 0.25);
+    }
+
     &__right-top {
         padding-bottom: 2rem;
-        border-bottom: 1px solid #f0f0f0;
     }
 
     &__content {
@@ -114,6 +132,11 @@
         place-items: center;
     }
 
+    &__content-footer {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
     &__description {
         display: flex;
         gap: 1rem;

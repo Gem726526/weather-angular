@@ -18,7 +18,6 @@
     &__icon {
         width: 100%;
         height: 100%;
-        opacity: 0.1rem;
     }
     &--reverse {
         flex-direction: row-reverse;
@@ -36,7 +35,7 @@
     }
 
     &__text {
-        color: #f3f3f3;
+        color: #fff;
 
         &--large {
             font-size: 2.5rem;

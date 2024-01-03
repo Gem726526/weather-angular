@@ -2,7 +2,7 @@
 
 
 <div class="weather-background-container">
-  <img src="../../../assets/images/background.jpeg" alt="" srcset="" class="weather-background-image">
+  <img src="../../../assets/images/normal.jpeg" alt="" srcset="" class="weather-background-image">
 </div>
 
 <div class="weather" *ngIf="weather; else errorContent">
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="weather_content-footer">
+      <div class="weather__content-footer">
         <div class="description-card description-card--large">
           <div class="description-card__image">
             <div class="sunrise"></div>
@@ -98,8 +98,6 @@
           </div>
           <p class="description-card__text--small  description-card__text">{{this.sunsetTime | date:'shortTime'}}</p>
         </div>
-        <p class="weather__sunrise"> </p>
-        <p class="weather__sunset"> </p>
       </div>
     </ng-container>
 
