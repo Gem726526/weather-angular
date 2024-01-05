@@ -87,6 +87,13 @@
         padding: 1rem 2rem 0.5rem;
         background: none;
         border-width: 0 0 2px 0;
+        &:focus {
+            border-width: 0 0 2px 0;
+        }
+        &:focus-visible {
+            border-width: 0 0 2px 0;
+            outline: none;
+        }
     }
 
     &__icon {
@@ -106,6 +113,10 @@
         border: 1px solid black;
         border-radius: 0.5rem;
         cursor: pointer;
+        &:hover {
+            background: rgba(180, 212, 255, 0.75);
+            opacity: 0.8;
+        }
     }
 
     &__right {

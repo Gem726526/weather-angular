@@ -1,9 +1,9 @@
 // weather.component.ts
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WeatherAPIService } from 'src/app/services/weatherAPI.service';
 import { DatePipe } from '@angular/common';
-import { finalize, forkJoin } from 'rxjs';
+import { finalize, forkJoin, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-weather',
@@ -28,7 +28,7 @@ export class WeatherComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.loactionSearchForm = this.formBuilder.group({
-      city: [''],
+      city: ['', Validators.required],
     });
   }
   showSunTime(sunrise: number, sunset: number, timeZone: string) {
@@ -63,33 +63,43 @@ export class WeatherComponent implements OnInit {
     }
   }
 
+  // ...
+
   search() {
+    if (!this.loactionSearchForm.valid) {
+      return;
+    }
     this.isLoading = true;
+
     this.weatherService
       .getWeather(this.loactionSearchForm.value.city)
       .pipe(
+        switchMap((weatherData: any) => {
+          this.weather = weatherData;
+          this.longitude = weatherData.coord.lon;
+          this.latitude = weatherData.coord.lat;
+          this.error = ''; // clear any previous error
+
+          // Combine the observables for time and weather into a single observable
+          return forkJoin([
+            this.weatherService.getTimeByCity(this.latitude, this.longitude),
+            of(weatherData),
+          ]);
+        }),
         finalize(() => {
           this.isLoading = false;
         })
       )
       .subscribe({
-        next: (data: any) => {
-          this.weather = data;
-          this.longitude = data.coord.lon;
-          this.latitude = data.coord.lat;
-          this.error = ''; // clear any previous error
-          this.weatherService
-            .getTimeByCity(this.latitude, this.longitude)
-            .subscribe({
-              next: (response: any) => {
-                this.localTime = response.formatted;
-                this.countryName = response.countryName;
-              },
-              error: (errorResponse) => {
-                console.error(errorResponse);
-              },
-            });
-          this.showSunTime(data.sys.sunrise, data.sys.sunset, data.timeZone);
+        next: ([timeData, weatherData]: [any, any]) => {
+          this.localTime = timeData.formatted;
+          this.countryName = timeData.countryName;
+
+          this.showSunTime(
+            weatherData.sys.sunrise,
+            weatherData.sys.sunset,
+            weatherData.timeZone
+          );
           this.timeClass = this.getPeriodOfDay(
             this.localTime,
             this.sunriseTime,
@@ -98,7 +108,7 @@ export class WeatherComponent implements OnInit {
         },
         error: (err) => {
           this.weather = '';
-          this.error = 'An error occurred while fetching the weather data.';
+          this.error = 'An error occurred while fetching the data.';
           console.error(this.error); // log the error to the console
         },
       });

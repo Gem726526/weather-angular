@@ -2,16 +2,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherAPIService {
-  private WEATHER_API_KEY = '3739ababa9bd7fc70e9e6563495d1812';
-  private TIME_API_KEY = 'F6YP8FR2EZ0Y';
-
-  private API_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${this.WEATHER_API_KEY}`;
-  private TIME_URL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${this.TIME_API_KEY}&format=json&by=position`;
+  private API_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${environment.WEATHER_API_KEY}`;
+  private TIME_URL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${environment.TIME_API_KEY}&format=json&by=position`;
 
   constructor(private http: HttpClient) {}
 
