@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class WeatherAPIService {
-  private API_URL = `http://api.openweathermap.org/data/2.5/weather?appid=${environment.WEATHER_API_KEY}`;
-  private TIME_URL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${environment.TIME_API_KEY}&format=json&by=position`;
+  private API_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${environment.WEATHER_API_KEY}`;
+  private TIME_URL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${environment.TIME_API_KEY}&format=json&by=position`;
 
   constructor(private http: HttpClient) {}
 

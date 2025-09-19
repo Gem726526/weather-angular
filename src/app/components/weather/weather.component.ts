@@ -78,7 +78,7 @@ export class WeatherComponent implements OnInit {
           this.weather = weatherData;
           this.longitude = weatherData.coord.lon;
           this.latitude = weatherData.coord.lat;
-          this.error = ''; // clear any previous error
+          this.error = '';
 
           // Combine the observables for time and weather into a single observable
           return forkJoin([
